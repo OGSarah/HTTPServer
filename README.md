@@ -7,13 +7,12 @@ A lightweight HTTP server in Swift.
 
 -   **Endpoint**: GET /users?page={pageNumber}&size={pageSize}&status={status} (e.g., /users?page=1&size=10&status=active).
 -   **Response**: JSON with metadata (currentPage, totalPages, pageSize) and users (array of {id, name, status}).
--   **Features**:
-
--   Handle multiple client connections concurrently.
--   Parse HTTP GET requests and query parameters.
--   Support pagination and status filtering.
--   Handle errors (e.g., invalid requests, server issues).
--   Log requests and responses for debugging.
+- **Features**:
+      -  Handle multiple client connections concurrently.
+    -   Parse HTTP GET requests and query parameters.
+    -   Support pagination and status filtering.
+    -   Handle errors (e.g., invalid requests, server issues).
+    -   Log requests and responses for debugging.
 
 -   **Time Estimate**: 2--3 days (15--20 hours) over a long weekend, depending on your familiarity with Swift and networking.
 
