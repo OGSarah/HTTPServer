@@ -1,8 +1,6 @@
 # HTTPServer
 A lightweight HTTP server in Swift.
 
-*Project Overview: Custom HTTP Server in Swift**
-
 **Goal**: Build a lightweight HTTP server in Swift that handles HTTP GET requests for a paginated user list API, returning JSON responses with user data and metadata. The server will use low-level socket programming with Darwin APIs, handle multiple clients concurrently, parse HTTP requests, and generate JSON responses, all without external frameworks. The project will deepen your understanding of networking, HTTP, and Swift's capabilities, while aligning with the paginated user list problem.
 
 **Scope**:
@@ -44,23 +42,23 @@ A lightweight HTTP server in Swift.
 
 9.  **Data Model**:
 
--   Match the JSON structure from your previous problem:swift\
-    **
-
-    **struct User: Codable {
--   let id: String
--   let name: String
--   let status: String // "active" or "inactive"
--   }
--   struct APIResponse: Codable {
--   let metadata: Metadata
--   let users: [User]
--   }
--   struct Metadata: Codable {
--   let currentPage: Int
--   let totalPages: Int
--   let pageSize: Int
--   }
+Match the JSON structure from your previous problem:
+```
+struct User: Codable {
+    let id: String
+    let name: String
+    let status: String // "active" or "inactive"
+}
+struct APIResponse: Codable {
+    let metadata: Metadata
+    let users: [User]
+}
+struct Metadata: Codable {
+    let currentPage: Int
+    let totalPages: Int
+    let pageSize: Int
+}
+```
 
 **Detailed Roadmap for the Weekend Project**
 
