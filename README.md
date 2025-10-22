@@ -353,4 +353,8 @@ while true {
 -   **Mock Data**: Populate the server with 50--100 users to test pagination (e.g., 5 pages at size=10).
 -   **Filtering**: Implement status filtering (active, inactive) to match the client's picker.
 
-This project is ideal for a long weekend, offering a deep dive into socket programming, HTTP, and Swift while producing a functional server that integrates with your paginated user list client. It's challenging but achievable, with room to explore advanced features like keep-alive or additional endpoints if time allows. If you want to focus on a specific part (e.g., socket setup, request parsing, or client integration), let me know, and I can provide a more targeted guide!
+**How to Run**
+using bash
+```
+./httpserver
+```
