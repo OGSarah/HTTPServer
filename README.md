@@ -157,25 +157,25 @@ struct Metadata: Codable {
 -   Body: JSON-encoded APIResponse using JSONEncoder.
 
 -   Convert the response to [UInt8] and send it via send on the client socket.
--   Example response:\
-    **
+-   Example response:
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 123
+Connection: close
 
-    **HTTP/1.1 200 OK
--   Content-Type: application/json
--   Content-Length: 123
--   Connection: close
-
--   {
--   "metadata": {
--   "currentPage": 1,
--   "totalPages": 5,
--   "pageSize": 10
--   },
--   "users": [
--   {"id": "u1", "name": "Alice", "status": "active"},
--   {"id": "u2", "name": "Bob", "status": "active"}
--   ]
--   }
+{
+  "metadata": {
+    "currentPage": 1,
+    "totalPages": 5,
+    "pageSize": 10
+  },
+  "users": [
+    {"id": "u1", "name": "Alice", "status": "active"},
+    {"id": "u2", "name": "Bob", "status": "active"}
+  ]
+}
+```
 
 -   Learning Goal: Learn HTTP response formatting and JSON serialization.
 
@@ -186,12 +186,12 @@ struct Metadata: Codable {
 
 11. **Test and Debug**:
 
--   Use curl to test:bash\
-    **
-
-    **curl "http://localhost:8080/users?page=1&size=10"
--   curl "http://localhost:8080/users?page=1&size=10&status=active"
--   curl "http://localhost:8080/invalid" # Should return 404
+-   Use curl to test:
+```
+curl "http://localhost:8080/users?page=1&size=10"
+curl "http://localhost:8080/users?page=1&size=10&status=active"
+curl "http://localhost:8080/invalid" # Should return 404
+```
 
 -   Verify JSON structure, pagination, and filtering.
 -   Log requests and responses (e.g., to console or a file) for debugging.
@@ -200,17 +200,18 @@ struct Metadata: Codable {
 
 1.  **Add Concurrency**:
 
--   Modify the accept loop to handle each client connection on a separate DispatchQueue:swift\
-    **
+-   Modify the accept loop to handle each client connection on a separate DispatchQueue:
 
-    **let queue = DispatchQueue(label: "com.example.server.client", attributes: .concurrent)
--   while true {
--   let clientSocket = accept(serverSocket, ...)
--   queue.async {
--   // Read, parse, process, and respond
--   close(clientSocket)
--   }
--   }
+```
+let queue = DispatchQueue(label: "com.example.server.client", attributes: .concurrent)
+while true {
+    let clientSocket = accept(serverSocket, ...)
+    queue.async {
+        // Read, parse, process, and respond
+        close(clientSocket)
+    }
+}
+```
 
 -   Use a serial DispatchQueue or actor to protect the user data store from concurrent access.
 -   Test with multiple simultaneous curl requests to ensure concurrency works.
