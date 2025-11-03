@@ -311,37 +311,6 @@ while true {
 -   **Error Recovery**: Recover gracefully from socket failures or client disconnects.
 -   **Extensibility**: Design the server to easily add new endpoints (e.g., GET /users/{id}).
 
-**Resources for Learning**
-
--   **Darwin Sockets**:
-
--   Use man socket, man bind, man listen, etc., in a terminal for documentation.
--   Key functions: socket, setsockopt, bind, listen, accept, recv, send, close.
-
--   **Foundation**:
-
--   JSONEncoder/JSONDecoder for JSON handling.
--   URLComponents for query parameter parsing.
--   DispatchQueue for concurrency.
--   FileHandle for logging to a file.
-
--   **HTTP RFC 7230**: Read the HTTP/1.1 specification for request/response formats.
--   **Swift Documentation**: Apple's documentation for Codable and GCD.
--   **Testing Tools**:
-
--   curl for basic testing.
--   Postman for structured API testing.
--   A simple Swift client using URLSession (e.g., your paginated user list client).
-
-**Tips for a Long Weekend**
-
--   **Break It Down**: Tackle one component at a time (sockets, parsing, routing, responses).
--   **Test Incrementally**: Verify each piece (e.g., socket setup, request parsing) with curl before moving on.
--   **Keep It Fun**: Add a / endpoint with a creative message or ASCII art to make testing enjoyable.
--   **Document**: Write comments or a README to track your learning and design decisions.
--   **Experiment**: Try adding a new endpoint (e.g., GET /stats for user counts) as a stretch goal.
--   **Debugging**: Use logging extensively to trace request/response flow and errors.
-
 **Integration with Paginated User List**
 
 -   **API Compatibility**: Ensure the server's /users endpoint matches the client's expectations:
