@@ -1,5 +1,5 @@
 # HTTPServer
-[![Swift 6+](https://img.shields.io/badge/Swift-6%2B-orange.svg)](https://swift.org) [![macOS](https://img.shields.io/badge/platform-macOS-lightgrey.svg)](https://developer.apple.com/macos/)
+![Swift 6+](https://img.shields.io/badge/Swift-6%2B-orange.svg) ![macOS 26](https://img.shields.io/badge/platform-macOS_26-lightgrey.svg)
 
 **A lightweight, educational HTTP server built from scratch in Swift using only the standard library and Darwin socket APIs — no external frameworks.**
 
