@@ -5,21 +5,6 @@
 
 This project implements a minimal yet functional HTTP server that serves a **paginated user list API** with filtering, designed specifically for learning low-level networking, HTTP protocol handling, and concurrency in Swift.
 
----
-
-## Goal
-
-Build a **custom HTTP server** that:
-- Listens on `localhost:8080`
-- Handles `GET /users` with pagination and status filtering
-- Returns JSON responses with proper metadata
-- Supports multiple concurrent clients
-- Uses **only** `Foundation`, `Darwin`, and Swift’s concurrency (`actor`, GCD)
-
-Perfect for a **long weekend project (15–20 hours)** to deeply understand how web servers work under the hood.
-
----
-
 ## Features
 
 | Feature | Implemented |
@@ -36,6 +21,23 @@ Perfect for a **long weekend project (15–20 hours)** to deeply understand how 
 | Command-line executable | Yes |
 
 ---
+
+#### Project Layout:
+```
+HTTPServer/
+├── HTTPServer/
+│   ├── Models/
+│   │   ├── APIResponse.swift
+│   │   ├── HTTPRequest.swift
+│   │   ├── HTTPResponse.swift
+│   │   ├── Metadata.swift
+│   │   └── User.swift
+│   ├── HTTPServer.swift
+│   ├── Logger.swift
+│   ├── main.swift
+│   ├── RequestHandler.swift
+│   └── UserStore.swift
+```
 
 #### API Endpoint:
 
