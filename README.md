@@ -114,5 +114,5 @@ curl http://localhost:8080/
 curl "http://localhost:8080/invalid"        # 404
 curl "http://localhost:8080/users?page=-1"  # 400
 ```
-### Stop:
+#### Stop:
 Press `Ctrl + C`
