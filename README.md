@@ -37,11 +37,11 @@ Perfect for a **long weekend project (15–20 hours)** to deeply understand how 
 
 ---
 
-## API Endpoint
+#### API Endpoint:
 
 `GET /users?page={page}&size={size}&status={status}`
 
-## Response Format
+#### Response Format:
 ```bash
 {
   "metadata": {
@@ -57,7 +57,7 @@ Perfect for a **long weekend project (15–20 hours)** to deeply understand how 
 
 ```
 
-### Root Endpoint
+#### Root Endpoint:
 ```bash
 curl http://localhost:8080/
 ```
@@ -66,21 +66,46 @@ curl http://localhost:8080/
 { "message": "Welcome to the User API" }
 ```
 
-#### Query Parameters
+#### Query Parameters:
 | Param | Type | Default | Description |
 |------|------|--------|-------------|
 | `page` | `Int` | `1` | Current page |
 | `size` | `Int` | `10` | Items per page |
 | `status` | `String` | `nil` | Filter: `active` or `inactive` |
 
-#### Example Requests
+#### Example Requests:
 ```bash
 curl "http://localhost:8080/users?page=1&size=5"
 curl "http://localhost:8080/users?page=2&size=10&status=active"
 ```
 
-**How to Run**
-using bash
+#### Sample Output:
 ```
+[2025-04-05 10:30:15] Server started on port 8080
+[2025-04-05 10:30:20] Responding to GET /users?page=1&size=10&status=active with 200 OK
+[2025-04-05 10:30:25] Invalid path: /invalid
+
+```
+
+#### Run:
+```bash
 ./httpserver
 ```
+
+#### Test:
+```
+# Basic request
+curl "http://localhost:8080/users?page=1&size=5"
+
+# Filtered request
+curl "http://localhost:8080/users?page=1&size=10&status=active"
+
+# Welcome page
+curl http://localhost:8080/
+
+# Error cases
+curl "http://localhost:8080/invalid"        # 404
+curl "http://localhost:8080/users?page=-1"  # 400
+```
+### Stop:
+Press `Ctrl + C`
