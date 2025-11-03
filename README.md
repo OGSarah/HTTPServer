@@ -41,6 +41,22 @@ Perfect for a **long weekend project (15–20 hours)** to deeply understand how 
 
 `GET /users?page={page}&size={size}&status={status}`
 
+## Response Format
+```bash
+{
+  "metadata": {
+    "currentPage": 1,
+    "totalPages": 5,
+    "pageSize": 10
+  },
+  "users": [
+    { "id": "u1", "name": "Alice 1", "status": "inactive" },
+    { "id": "u2", "name": "Bob 2", "status": "active" }
+  ]
+}
+
+```
+
 #### Query Parameters
 | Param | Type | Default | Description |
 |------|------|--------|-------------|
