@@ -5,9 +5,10 @@
 //  Created by Sarah Clark on 10/22/25.
 //
 
+import Darwin
 import Foundation
 
-class HTTPServer {
+public final class HTTPServer {
     private let port: Int
     private let userStore: UserStore
     private let requestHandler: RequestHandler

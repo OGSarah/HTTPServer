@@ -7,5 +7,5 @@
 
 import Foundation
 
-print("Hello, World!")
-
+let server = HTTPServer(port: 8080)
+server.start()
