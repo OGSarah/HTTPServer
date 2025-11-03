@@ -80,26 +80,33 @@ curl "http://localhost:8080/users?page=1&size=5"
 curl "http://localhost:8080/users?page=2&size=10&status=active"
 ```
 
-#### Sample Output:
+#### Sample Console Output:
 ```
-[2025-04-05 10:30:15] Server started on port 8080
-[2025-04-05 10:30:20] Responding to GET /users?page=1&size=10&status=active with 200 OK
-[2025-04-05 10:30:25] Invalid path: /invalid
+[2025-11-03 14:22:10] Server started on port 8080
+[2025-11-03 14:22:15] GET /users?page=1&size=10&status=active → 200 OK
+[2025-11-03 14:22:18] GET /invalid → 404 Not Found
+[2025-11-03 14:22:20] Invalid query: page=-1 → 400 Bad Request
 
 ```
+# Build and Run
 
-#### Compile:
+#### Prerequisites:
+- Xcode 26
+- macOS 26 or later
+
+
+#### Compile
 Navigate to the HTTPServer that is adjacent to the HTTPServer.xcodeproj in the folder structure. Then run:
 
 ```
 swiftc *.swift -o httpserver
 ```
-#### Run:
+#### Run
 ```bash
 ./httpserver
 ```
 
-#### Test:
+#### Test
 ```
 # Basic request
 curl "http://localhost:8080/users?page=1&size=5"
@@ -114,5 +121,5 @@ curl http://localhost:8080/
 curl "http://localhost:8080/invalid"        # 404
 curl "http://localhost:8080/users?page=-1"  # 400
 ```
-#### Stop:
+#### Stop
 Press `Ctrl + C`
