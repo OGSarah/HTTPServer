@@ -57,6 +57,15 @@ Perfect for a **long weekend project (15–20 hours)** to deeply understand how 
 
 ```
 
+### Root Endpoint
+```bash
+curl http://localhost:8080/
+```
+
+```bash
+{ "message": "Welcome to the User API" }
+```
+
 #### Query Parameters
 | Param | Type | Default | Description |
 |------|------|--------|-------------|
