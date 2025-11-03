@@ -5,10 +5,8 @@
 
 This project implements a minimal yet functional HTTP server that serves a **paginated user list API** with filtering, designed specifically for learning low-level networking, HTTP protocol handling, and concurrency in Swift.
 
-## Features
-
-| Feature |
-|-------|-------------|
+| Features |
+|-------|
 | TCP socket server (`socket`, `bind`, `listen`, `accept`) |
 | HTTP/1.1 request parsing (method, path, query params, headers) |
 | Pagination (`page`, `size`) |
