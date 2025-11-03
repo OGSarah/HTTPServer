@@ -89,7 +89,7 @@ curl "http://localhost:8080/users?page=2&size=10&status=active"
 ```
 
 #### Compile:
-Navigate to the HTTPServer that is adjecent to the HTTPServer.xcodeproj in the folder structure. Then run:
+Navigate to the HTTPServer that is adjacent to the HTTPServer.xcodeproj in the folder structure. Then run:
 
 ```
 swiftc *.swift -o httpserver
