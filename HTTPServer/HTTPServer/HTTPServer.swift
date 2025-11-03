@@ -68,7 +68,9 @@ class HTTPServer {
             }
 
             queue.async {
-                self.handleClient(clientSocket)
+                Task {
+                    await self.handleClient(clientSocket)
+                }
             }
         }
     }
@@ -94,7 +96,7 @@ class HTTPServer {
             return
         }
 
-        let response = await Task { await requestHandler.handleRequest(request) }.value
+        let response = await requestHandler.handleRequest(request)
         sendResponse(clientSocket, response: response)
     }
 
