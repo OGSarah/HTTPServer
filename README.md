@@ -89,6 +89,10 @@ curl "http://localhost:8080/users?page=2&size=10&status=active"
 
 ```
 
+#### Compile:
+```
+
+```
 #### Run:
 ```bash
 ./httpserver
