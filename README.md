@@ -7,20 +7,22 @@ This project implements a minimal yet functional HTTP server that serves a **pag
 
 ## Features
 
-| Feature | Implemented |
+| Feature |
 |-------|-------------|
-| TCP socket server (`socket`, `bind`, `listen`, `accept`) | Yes |
-| HTTP/1.1 request parsing (method, path, query params, headers) | Yes |
-| Pagination (`page`, `size`) | Yes |
-| Filtering (`status=active` or `inactive`) | Yes |
-| Thread-safe in-memory user store (`actor`) | Yes |
-| Concurrent client handling (`DispatchQueue`) | Yes |
-| JSON encoding/decoding (`Codable`) | Yes |
-| Error handling (400, 404, 500) | Yes |
-| Request/response logging | Yes |
-| Command-line executable | Yes |
+| TCP socket server (`socket`, `bind`, `listen`, `accept`) |
+| HTTP/1.1 request parsing (method, path, query params, headers) |
+| Pagination (`page`, `size`) |
+| Filtering (`status=active` or `inactive`) |
+| Thread-safe in-memory user store (`actor`) |
+| Concurrent client handling (`DispatchQueue`) |
+| JSON encoding/decoding (`Codable`) |
+| Error handling (400, 404, 500) |
+| Request/response logging |
+| Command-line executable |
 
 ---
+
+#### 
 
 #### Project Layout:
 ```
