@@ -26,12 +26,11 @@ This project implements a minimal yet functional HTTP server that serves a **pag
 ```
 HTTPServer/
 ├── HTTPServer/
-│   ├── Models/
-│   │   ├── APIResponse.swift
-│   │   ├── HTTPRequest.swift
-│   │   ├── HTTPResponse.swift
-│   │   ├── Metadata.swift
-│   │   └── User.swift
+│   ├── APIResponse.swift
+│   ├── HTTPRequest.swift
+│   ├── HTTPResponse.swift
+│   ├── Metadata.swift
+│   ├── User.swift
 │   ├── HTTPServer.swift
 │   ├── Logger.swift
 │   ├── main.swift
@@ -52,8 +51,8 @@ HTTPServer/
     "pageSize": 10
   },
   "users": [
-    { "id": "u1", "name": "Alice 1", "status": "inactive" },
-    { "id": "u2", "name": "Bob 2", "status": "active" }
+    { "id": "u1", "name": "Orko 1", "status": "inactive" },
+    { "id": "u2", "name": "Molly 2", "status": "active" }
   ]
 }
 
