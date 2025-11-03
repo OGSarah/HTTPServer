@@ -1,45 +1,57 @@
 # HTTPServer
-A lightweight HTTP server in Swift.
+[![Swift 5.9+](https://img.shields.io/badge/Swift-5.9%2B-orange.svg)](https://swift.org) [![macOS](https://img.shields.io/badge/platform-macOS-lightgrey.svg)](https://developer.apple.com/macos/)
 
-**Goal**: Build a lightweight HTTP server in Swift that handles HTTP GET requests for a paginated user list API, returning JSON responses with user data and metadata. The server will use low-level socket programming with Darwin APIs, handle multiple clients concurrently, parse HTTP requests, and generate JSON responses, all without external frameworks. The project will deepen your understanding of networking, HTTP, and Swift's capabilities, while aligning with the paginated user list problem.
+**A lightweight, educational HTTP server built from scratch in Swift using only the standard library and Darwin socket APIs — no external frameworks.**
 
-**Scope**:
+This project implements a minimal yet functional HTTP server that serves a **paginated user list API** with filtering, designed specifically for learning low-level networking, HTTP protocol handling, and concurrency in Swift.
 
--   **Endpoint**: GET /users?page={pageNumber}&size={pageSize}&status={status} (e.g., /users?page=1&size=10&status=active).
--   **Response**: JSON with metadata (currentPage, totalPages, pageSize) and users (array of {id, name, status}).
-- **Features**:
-      -  Handle multiple client connections concurrently.
-    -   Parse HTTP GET requests and query parameters.
-    -   Support pagination and status filtering.
-    -   Handle errors (e.g., invalid requests, server issues).
-    -   Log requests and responses for debugging.
+---
 
--   **Time Estimate**: 2--3 days (15--20 hours) over a long weekend, depending on your familiarity with Swift and networking.
+## Goal
 
-**Key Concepts**
+Build a **custom HTTP server** that:
+- Listens on `localhost:8080`
+- Handles `GET /users` with pagination and status filtering
+- Returns JSON responses with proper metadata
+- Supports multiple concurrent clients
+- Uses **only** `Foundation`, `Darwin`, and Swift’s concurrency (`actor`, GCD)
 
-1.  **HTTP Protocol**:
+Perfect for a **long weekend project (15–20 hours)** to deeply understand how web servers work under the hood.
 
--   **Request**: Consists of a request line (e.g., GET /users?page=1&size=10 HTTP/1.1), headers (e.g., Host, Accept), and an optional body (not needed for GET).
--   **Response**: Includes a status line (e.g., HTTP/1.1 200 OK), headers (e.g., Content-Type: application/json), and a body (JSON data).
--   **HTTP/1.1**: Support basic features like persistent connections (keep-alive) for learning purposes.
+---
 
-3.  **Socket Programming**:
+## Features
 
--   Use Darwin's socket APIs (socket, bind, listen, accept, recv, send) to create a TCP server.
--   Sockets enable communication over TCP/IP, with the server listening on a port (e.g., 8080) for incoming client connections.
+| Feature | Implemented |
+|-------|-------------|
+| TCP socket server (`socket`, `bind`, `listen`, `accept`) | Yes |
+| HTTP/1.1 request parsing (method, path, query params, headers) | Yes |
+| Pagination (`page`, `size`) | Yes |
+| Filtering (`status=active` or `inactive`) | Yes |
+| Thread-safe in-memory user store (`actor`) | Yes |
+| Concurrent client handling (`DispatchQueue`) | Yes |
+| JSON encoding/decoding (`Codable`) | Yes |
+| Error handling (400, 404, 500) | Yes |
+| Request/response logging | Yes |
+| Command-line executable | Yes |
 
-5.  **Concurrency**:
+---
 
--   Handle multiple clients using Grand Central Dispatch (GCD) DispatchQueue to process each connection on a separate thread or queue.
--   Ensure thread safety when accessing shared resources (e.g., user data store).
+## API Endpoint
 
-7.  **JSON Handling**:
+### `GET /users?page={page}&size={size}&status={status}`
 
--   Use Foundation's JSONEncoder and JSONDecoder for serializing responses and parsing potential request bodies.
--   Define Codable structs for the API response format from your paginated user list problem.
+#### Query Parameters
+| Param | Type | Default | Description |
+|------|------|--------|-------------|
+| `page` | `Int` | `1` | Current page |
+| `size` | `Int` | `10` | Items per page |
+| `status` | `String` | `nil` | Filter: `active` or `inactive` |
 
-9.  **Data Model**:
+#### Example Requests
+```bash
+curl "http://localhost:8080/users?page=1&size=5"
+curl "http://localhost:8080/users?page=2&size=10&status=active"
 
 Match the JSON structure from your previous problem:
 ```
