@@ -39,7 +39,7 @@ Perfect for a **long weekend project (15–20 hours)** to deeply understand how 
 
 ## API Endpoint
 
-### `GET /users?page={page}&size={size}&status={status}`
+`GET /users?page={page}&size={size}&status={status}`
 
 #### Query Parameters
 | Param | Type | Default | Description |
