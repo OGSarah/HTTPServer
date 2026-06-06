@@ -123,3 +123,7 @@ curl "http://localhost:8080/users?page=-1"  # 400
 ```
 #### Stop
 Press `Ctrl + C`
+
+## License
+
+Released under the [MIT License](LICENSE). © 2026 SarahUniverse
