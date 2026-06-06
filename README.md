@@ -123,11 +123,3 @@ curl "http://localhost:8080/users?page=-1"  # 400
 ```
 #### Stop
 Press `Ctrl + C`
-
-## License
-Proprietary Software
-
-© 2026 SarahUniverse
-
-This software and its source code are the exclusive property of SarahUniverse.
-No part of this software may be reproduced, distributed, or transmitted in any form or by any means without prior written permission.
