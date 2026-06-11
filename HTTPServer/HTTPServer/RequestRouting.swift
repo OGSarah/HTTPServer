@@ -1,6 +1,6 @@
 //
-// LoggerTests.swift
-// HTTPServerTests
+// RequestRouting.swift
+// HTTPServer
 //
 // MIT License
 //
@@ -26,14 +26,20 @@
 //
 
 import Foundation
-import Testing
 
-@Suite("Logger")
-struct LoggerTests {
+/// The request handling surface that ``HTTPServer`` depends on.
+///
+/// Depending on this protocol rather than a concrete type lets the server be
+/// driven by a stub router in tests, and keeps parsing, routing, and
+/// serialization behind a single, swappable seam.
+protocol RequestRouting: Sendable {
+    /// Parses a raw request string into a structured ``HTTPRequest``, or returns
+    /// `nil` when the request line is missing or invalid.
+    func parseRequest(data: String) -> HTTPRequest?
 
-    @Test("Logging a message does not crash")
-    func logsWithoutCrashing() {
-        Logger.log("Test log message")
-        Logger.log("")
-    }
+    /// Routes a parsed request to a response.
+    func handleRequest(_ request: HTTPRequest) async -> HTTPResponse
+
+    /// Serializes a response into the bytes written back to the client.
+    func serializeResponse(_ response: HTTPResponse) -> Data
 }

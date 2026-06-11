@@ -1,19 +1,51 @@
 //
-//  RequestHandler.swift
-//  HTTPServer
+// RequestHandler.swift
+// HTTPServer
 //
-//  Created by Sarah Clark on 10/23/25.
+// MIT License
+//
+// Copyright (c) 2026 SarahUniverse
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 //
 
 import Foundation
 
-struct RequestHandler {
+/// Parses raw HTTP requests, routes them to the user API, and serializes the
+/// resulting responses.
+struct RequestHandler: RequestRouting {
     private let userStore: UserStore
+
+    /// The welcome body for `GET /`, encoded once. The payload is a fixed
+    /// dictionary that cannot realistically fail to encode, so a literal fallback
+    /// is used instead of `try!` to keep the handler free of forced operations.
+    private static let welcomeBody: Data = (try? JSONEncoder().encode(["message": "Welcome to the User API"]))
+        ?? Data(#"{"message":"Welcome to the User API"}"#.utf8)
 
     init(userStore: UserStore) {
         self.userStore = userStore
     }
 
+    /// Parses a raw request string into an ``HTTPRequest``.
+    ///
+    /// - Returns: A parsed request, or `nil` when the request is empty or the
+    ///   request line does not end in an `HTTP/` version token.
     func parseRequest(data: String) -> HTTPRequest? {
         let lines = data.split(separator: "\r\n")
         guard !lines.isEmpty else {
@@ -50,10 +82,16 @@ struct RequestHandler {
         return HTTPRequest(method: method, path: path, queryParameters: queryParameters, headers: headers)
     }
 
+    /// Routes a parsed request to a response.
+    ///
+    /// Only `GET` is supported. `GET /users` accepts `page`, `size`, and `status`
+    /// query parameters. A non-numeric `page` or `size` falls back to the default
+    /// (page 1, size 10) rather than failing, while a non-positive value or an
+    /// unrecognized `status` yields `400 Bad Request`.
     func handleRequest(_ request: HTTPRequest) async -> HTTPResponse {
         guard request.method == "GET" else {
             Logger.log("Unsupported method: \(request.method)")
-            return HTTPResponse(statusCode: 405, statusText:  "Method not allowed", headers: ["Content-Length" : "0"], body: nil)
+            return HTTPResponse(statusCode: 405, statusText: "Method not allowed", headers: ["Content-Length": "0"], body: nil)
         }
 
         switch request.path {
@@ -87,10 +125,9 @@ struct RequestHandler {
             }
 
         case "/":
-            let message = ["message": "Welcome to the User API"]
-            let jsonData = try! JSONEncoder().encode(message)
+            let jsonData = Self.welcomeBody
             let headers = [
-                "Content-Type" : "application/json",
+                "Content-Type": "application/json",
                 "Content-Length": "\(jsonData.count)",
                 "Connection": "close"
             ]
@@ -103,6 +140,7 @@ struct RequestHandler {
         }
     }
 
+    /// Serializes a response into the bytes written back to the client.
     func serializeResponse(_ response: HTTPResponse) -> Data {
         var responseString = "HTTP/1.1 \(response.statusCode) \(response.statusText)\r\n"
         for (key, value) in response.headers {

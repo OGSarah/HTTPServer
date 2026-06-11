@@ -28,11 +28,16 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				APIResponse.swift,
+				ConnectionReader.swift,
 				HTTPRequest.swift,
 				HTTPResponse.swift,
 				Logger.swift,
 				Metadata.swift,
+				RequestFraming.swift,
 				RequestHandler.swift,
+				RequestRouting.swift,
+				ServerConfiguration.swift,
+				ServerError.swift,
 				User.swift,
 				UserStore.swift,
 			);

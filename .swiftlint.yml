@@ -1,0 +1,38 @@
+# SwiftLint configuration for HTTPServer.
+# Run locally with: swiftlint lint --strict
+
+included:
+  - HTTPServer/HTTPServer
+  - HTTPServer/HTTPServerTests
+
+# Mock data deliberately force-unwraps randomElement(), so keep this a warning
+# rather than a hard failure.
+disabled_rules:
+  - todo
+
+opt_in_rules:
+  - closure_spacing
+  - empty_count
+  - explicit_init
+  - first_where
+  - redundant_nil_coalescing
+  - sorted_imports
+  - unneeded_parentheses_in_closure_argument
+
+line_length:
+  warning: 140
+  error: 200
+  ignores_comments: true
+
+identifier_name:
+  min_length:
+    warning: 2
+  excluded:
+    - id
+    - tv
+    - n
+    - fd
+
+type_name:
+  max_length:
+    warning: 50
