@@ -193,4 +193,4 @@ xcodebuild test \
 
 ## License
 
-Released under the [MIT License](LICENSE). Copyright 2026 SarahUniverse.
+Released under the [MIT License](LICENSE). © 2026 SarahUniverse
