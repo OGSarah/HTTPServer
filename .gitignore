@@ -1,0 +1,4 @@
+# Keep the shared scheme tracked. A bare `HTTPServer.xcscheme` rule in the
+# user's global gitignore otherwise excludes it, which breaks `xcodebuild test`
+# on CI (the scheme has no test action when auto-generated).
+!HTTPServer.xcscheme
