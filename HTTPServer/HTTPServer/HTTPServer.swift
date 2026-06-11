@@ -8,7 +8,7 @@
 import Darwin
 import Foundation
 
-class HTTPServer {
+final class HTTPServer: Sendable {
     private let port: Int
     private let userStore: UserStore
     private let requestHandler: RequestHandler

@@ -17,7 +17,7 @@ struct RequestHandler {
     func parseRequest(data: String) -> HTTPRequest? {
         let lines = data.split(separator: "\r\n")
         guard !lines.isEmpty else {
-            Logger.log("Empy request received")
+            Logger.log("Empty request received")
             return nil
         }
 
@@ -79,7 +79,7 @@ struct RequestHandler {
                     "Content-Length": "\(jsonData.count)",
                     "Connection": "close"
                 ]
-                Logger.log("Responding to GET /users?page=\(page)&size\(size)&status\(status ?? "all") with 200 OK")
+                Logger.log("Responding to GET /users?page=\(page)&size=\(size)&status=\(status ?? "all") with 200 OK")
                 return HTTPResponse(statusCode: 200, statusText: "OK", headers: headers, body: jsonData)
             } catch {
                 Logger.log("JSON encoding error: \(error)")
