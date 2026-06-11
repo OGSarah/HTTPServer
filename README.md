@@ -184,13 +184,6 @@ xcodebuild test \
 - No TLS.
 - No connection cap or backpressure under heavy load.
 
-## Future work
-
-- HTTP keep alive and persistent connections.
-- Binding to a specific host rather than all interfaces.
-- A configurable connection limit.
-- TLS support.
-
 ## License
 
 Released under the [MIT License](LICENSE). Copyright 2026 SarahUniverse.
